@@ -44,7 +44,6 @@ function getBreweryByCity(city, state){
 function getCityByLocation(lat, long){
     const geoParseApi = `https://geocode.xyz/${lat},${long}?json=1`
     get(geoParseApi).then(response => {
-        console.log(response['city'], response['stanename']);
         getBreweryByCity(response['city'], response['statename']);
     })
 }
@@ -57,7 +56,6 @@ function getUserLocation () {
     }
     userPosition()
     .then((pos) => {
-        console.log('It worked!', pos.coords)
         userLocation = [pos.coords.latitude, pos.coords.longitude]
         getCityByLocation(pos.coords.latitude, pos.coords.longitude);
     })
